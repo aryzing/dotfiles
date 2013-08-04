@@ -12,5 +12,6 @@
 	lol = log --oneline --graph --decorate --all
 	branch = branch -a
 	bra = branch -a
+	pom = push origin master
 [color]
 	ui = true
