@@ -9,5 +9,6 @@
 	br = branch
 	up = rebase
 	ci = commit
+	lol = log --oneline --graph --decorate --all
 [color]
 	ui = true
