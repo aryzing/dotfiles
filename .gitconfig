@@ -13,5 +13,7 @@
 	branch = branch -a
 	bra = branch -a
 	pom = push origin master
+	cob = checkout -b
+	unstage = reset HEAD --
 [color]
 	ui = true
