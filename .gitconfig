@@ -3,12 +3,17 @@
 	email = ebardaji@gmail.com
 [core]
 	editor = vim
+	autocrlf = input
+	safecrlf = true
 [alias]
 	st = status
 	co = checkout
 	br = branch
 	up = rebase
 	ci = commit
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
 	lol = log --oneline --graph --decorate --all
 	branch = branch -a
 	bra = branch -a
