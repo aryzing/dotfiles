@@ -24,3 +24,5 @@
 	unstage = reset HEAD --
 [color]
 	ui = true
+[push]
+	default = simple
