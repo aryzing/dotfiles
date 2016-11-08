@@ -14,6 +14,14 @@ mkcdir() {
   mkdir -p -- "$1" && cd -P -- "$1"
 }
 
+# aliases for git
+alias gs='git status '
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias go='git checkout '
+
 # necessary for nvm and node to run
 # see https://github.com/creationix/nvm
 export NVM_DIR="$HOME/.nvm"
