@@ -1,6 +1,6 @@
 # welcome
 echo Welcome $USER! On $HOSTNAME.
-date +"%d-%m-%Y, %H:%m"
+date +"%Y-%m-%d, %H:%m"
 echo
 
 # aliases for quick directories
