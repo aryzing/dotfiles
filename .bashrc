@@ -10,6 +10,7 @@ alias play='cd ~/workspace/playground'
 alias notes='cd ~/workspace/notes'
 alias ary='cd ~/workspace/aryzing.net'
 alias aryzing='cd ~/workspace/aryzing.net'
+alias anccre='cd ~/workspace/anccre'
 mkcdir() {
   mkdir -p -- "$1" && cd -P -- "$1"
 }
