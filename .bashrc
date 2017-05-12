@@ -12,6 +12,7 @@ alias ary='cd ~/workspace/aryzing.net'
 alias aryzing='cd ~/workspace/aryzing.net'
 alias anccre='cd ~/workspace/anccre'
 alias tq='cd ~/workspace/tq-plus-admin'
+alias lal='ls -Al'
 mkcdir() {
   mkdir -p -- "$1" && cd -P -- "$1"
 }
