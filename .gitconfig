@@ -21,6 +21,8 @@
   dump = cat-file -p
   lol = log --oneline --graph --decorate --all
   lola = log --pretty='%C(auto)%h %d %s | %an [%C(yellow)%ae%C(auto)]' --graph --all
+  lolt = log --pretty='%C(auto)%h %d %s | %C(cyan)%ai%C(auto)' --graph --all
+  lolat = log --pretty='%C(auto)%h %d %s | %an [%C(yellow)%ae%C(auto)] %C(cyan)%ai%C(auto)' --graph --all
   branch = branch -a
   bra = branch -a
   pom = push origin master
