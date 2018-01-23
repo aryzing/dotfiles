@@ -8,6 +8,7 @@
   editor = atom --wait
   autocrlf = input
   safecrlf = true
+  excludesfile = ~/.gitignore_global
 [alias]
   st = status
   co = checkout
@@ -28,6 +29,9 @@
   pom = push origin master
   cob = checkout -b
   unstage = reset HEAD --
+  p = push
+  pfo = pull --ff-only
+  puo = push -u origin
 [color]
   ui = true
 [push]
