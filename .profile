@@ -26,6 +26,6 @@ alias ga='git add '
 alias gb='git branch '
 alias gc='git commit'
 alias gd='git diff'
-alias go='git checkout '
+# alias go='git checkout ' # interferes with go programming language
 alias gk='gitk --all'
 alias gx='gitx --all'
