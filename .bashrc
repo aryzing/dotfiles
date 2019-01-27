@@ -144,6 +144,11 @@ alias gb='git branch '
 alias gc='git commit'
 alias gd='git diff'
 # alias go='git checkout ' # interferes with go programming langauge
+function gacp() {
+    git add .
+    git commit -m "$1"
+    git push
+}
 
 # set PATH to include rust cargo
 export PATH="$HOME/.cargo/bin:$PATH"
