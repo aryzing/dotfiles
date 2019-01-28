@@ -5,7 +5,7 @@
   name = Eduard Bardají Puig
   email = ebardaji@gmail.com
 [core]
-  editor = atom --wait
+  editor = vim
   autocrlf = input
   safecrlf = true
   excludesfile = ~/.gitignore_global
