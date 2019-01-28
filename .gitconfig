@@ -34,5 +34,3 @@
   puo = push -u origin
 [color]
   ui = true
-[push]
-  default = simple
