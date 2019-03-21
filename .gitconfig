@@ -21,6 +21,7 @@
   type = cat-file -t
   dump = cat-file -p
   lol = log --oneline --graph --decorate --all
+  lols = log --oneline --graph --decorate --all -20
   lola = log --pretty='%C(auto)%h %d %s | %an [%C(yellow)%ae%C(auto)]' --graph --all
   lolt = log --pretty='%C(auto)%h %d %s | %C(cyan)%ai%C(auto)' --graph --all
   lolat = log --pretty='%C(auto)%h %d %s | %an [%C(yellow)%ae%C(auto)] %C(cyan)%ai%C(auto)' --graph --all
