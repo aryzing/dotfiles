@@ -133,6 +133,10 @@ alias aryzing='cd ~/workspace/aryzing.net'
 alias anccre='cd ~/workspace/anccre'
 alias tq='cd ~/workspace/tq-plus-admin'
 alias lal='ls -Al'
+alias oos='cd ~/workspace/oos-frontend-platforms'
+alias oosui='cd ~/workspace/oos-frontend-platforms/packages/oos-ui'
+alias redon='redshift -O 2700'
+alias redoff='redshift -x'
 mkcdir() {
   mkdir -p -- "$1" && cd -P -- "$1"
 }
@@ -160,3 +164,14 @@ export NVM_DIR="$HOME/.nvm"
 
 # go
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$(go env GOPATH)/bin
+
+# 90POE stuff
+alias kubetodev="hash -r && export KUBECONFIG=~/.kube/eduard_bardaji-dev.devopenocean.studio-admin.config && export K8S_CLUSTER='dev-new'"
+PATH="$HOME/bin:${PATH}"
+function assume-role {
+    for i in $(env | grep AWS | cut -d '=' -f 1); do
+        unset $i;
+    done
+    eval $( $(which assume-role) -duration=12h $@);
+}
