@@ -135,6 +135,8 @@ alias tq='cd ~/workspace/tq-plus-admin'
 alias lal='ls -Al'
 alias oos='cd ~/workspace/oos-frontend-platforms'
 alias oosui='cd ~/workspace/oos-frontend-platforms/packages/oos-ui'
+alias nca='cd ~/workspace/notifications-client-api'
+alias nds='cd ~/workspace/notifications-domain-service'
 alias redon='redshift -O 2700'
 alias redoff='redshift -x'
 mkcdir() {
