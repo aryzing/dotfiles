@@ -118,6 +118,11 @@ fi
 
 ### My Personal Additions ###
 
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1="\[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]$ "
+
 # welcome
 echo Welcome $USER! On $HOSTNAME.
 date +"%Y-%m-%d, %H:%M"
@@ -137,8 +142,14 @@ alias oos='cd ~/workspace/oos-frontend-platforms'
 alias oosui='cd ~/workspace/oos-frontend-platforms/packages/oos-ui'
 alias nca='cd ~/workspace/notifications-client-api'
 alias nds='cd ~/workspace/notifications-domain-service'
+alias hca='cd ~/workspace/header-client-api'
+alias md='cd ~/workspace/multitenancy-dashboard'
+alias mdms='cd ~/workspace/multitenancy-dashboard-mock-graphql-server'
+alias cbp='cd ~/workspace/concourse-build-pipelines'
+alias releases='cd ~/workspace/k8s-releases'
 alias redon='redshift -O 2700'
 alias redoff='redshift -x'
+
 mkcdir() {
   mkdir -p -- "$1" && cd -P -- "$1"
 }
@@ -156,8 +167,20 @@ function gacp() {
     git push
 }
 
+function deleteAllBranchesExceptMaster() {
+    git checkout master
+    git branch | grep -v '^*' | xargs git branch -d 
+}
+function deleteAllBranchesExceptMasterForce() {
+    git checkout master
+    git branch | grep -v '^*' | xargs git branch -D
+}
+
 # set PATH to include rust cargo
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# set PATH to include yarn bin
+export PATH="$PATH:/home/aryzing/.yarn/bin"
 
 # nvm - added automatically by nvm bash script
 export NVM_DIR="$HOME/.nvm"
@@ -169,11 +192,37 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 
 # 90POE stuff
-alias kubetodev="hash -r && export KUBECONFIG=~/.kube/eduard_bardaji-dev.devopenocean.studio-admin.config && export K8S_CLUSTER='dev-new'"
-PATH="$HOME/bin:${PATH}"
+export PATH=~/.local/bin:$PATH # this is for pip: https://docs.aws.amazon.com/cli/latest/userguide/install-linux.html#install-linux-pip
 function assume-role {
     for i in $(env | grep AWS | cut -d '=' -f 1); do
         unset $i;
     done
     eval $( $(which assume-role) -duration=12h $@);
 }
+alias kubetodev="hash -r && export KUBECONFIG=~/.kube/eduard_bardaji-dev.devopenocean.studio-admin.config && export K8S_CLUSTER='dev'"
+alias kubetotest="hash -r && export KUBECONFIG=~/.kube/test.devopenocean.studio-admin.config && export K8S_CLUSTER='test'"
+alias kubetodevnew="hash -r && export KUBECONFIG=~/.kube/new-dev-new.devopenocean.studio-admin.config && export K8S_CLUSTER='dev'"
+alias kubetotestnew="hash -r && export KUBECONFIG=~/.kube/new-test-new.devopenocean.studio-admin.config && export K8S_CLUSTER='test'"
+alias kubetostaging="hash -r && export KUBECONFIG=~/.kube/stg.devopenocean.studio-admin.config && export K8S_CLUSTER='stg'"
+function k8sdev {
+    kubetodev
+    assume-role development
+}
+function k8stest {
+    kubetotest
+    assume-role test
+}
+function k8sdevnew {
+    kubetodevnew
+    assume-role dev-test
+}
+function k8stestnew {
+    kubetotestnew
+    assume-role dev-test
+}
+function k8sstg {
+    kubetodev
+    assume-role staging
+}
+
+PATH="$HOME/bin:${PATH}"
