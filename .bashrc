@@ -176,6 +176,15 @@ function deleteAllBranchesExceptMasterForce() {
     git branch | grep -v '^*' | xargs git branch -D
 }
 
+function lastTenVersionsOf() {
+    if [[ -z "$*" ]] ; then
+        echo 'You need to provide search text.'
+        echo 'E.g., `lastTenVersionsOf root`.'
+        return
+    fi
+    git tag -l "**$1**" --sort=-version:refname | head -n 10
+}
+
 # set PATH to include rust cargo
 export PATH="$HOME/.cargo/bin:$PATH"
 
