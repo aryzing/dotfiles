@@ -129,24 +129,17 @@ date +"%Y-%m-%d, %H:%M"
 echo
 
 # aliases for quick directories
-alias blyp='cd ~/hr/coursework/sprints/thesis/blyp'
-alias toy='cd ~/hr/coursework/toy/'
-alias play='cd ~/workspace/playground'
 alias notes='cd ~/workspace/notes'
 alias ary='cd ~/workspace/aryzing.net'
 alias aryzing='cd ~/workspace/aryzing.net'
 alias anccre='cd ~/workspace/anccre'
-alias tq='cd ~/workspace/tq-plus-admin'
 alias lal='ls -Al'
-alias oos='cd ~/workspace/oos-frontend-platforms'
-alias oosui='cd ~/workspace/oos-frontend-platforms/packages/oos-ui'
-alias nca='cd ~/workspace/notifications-client-api'
-alias nds='cd ~/workspace/notifications-domain-service'
-alias hca='cd ~/workspace/header-client-api'
-alias md='cd ~/workspace/multitenancy-dashboard'
-alias mdms='cd ~/workspace/multitenancy-dashboard-mock-graphql-server'
-alias cbp='cd ~/workspace/concourse-build-pipelines'
-alias releases='cd ~/workspace/k8s-releases'
+alias oos='code ~/workspace/oos-frontend-platforms'
+alias bo='code ~/workspace/multitenancy-dashboard'
+alias pipelines='code ~/workspace/concourse-build-pipelines'
+alias releases='code ~/workspace/k8s-releases'
+alias as='code ~/workspace/anccre-2-server'
+alias ac='code ~/workspace/anccre-2-client'
 alias redon='redshift -O 2700'
 alias redoff='redshift -x'
 
@@ -183,6 +176,39 @@ function deleteAllBranchesExceptMaster() {
 function deleteAllBranchesExceptMasterForce() {
     git checkout master
     git branch | grep -v '^*' | xargs git branch -D
+}
+
+function lastTenVersionsOf() {
+    if [[ -z "$*" ]] ; then
+        echo 'You need to provide search text.'
+        echo 'E.g., `lastTenVersionsOf root`.'
+        return
+    fi
+    git tag -l "**$1**" --sort=-version:refname | head -n 10
+}
+
+function oosTag() {
+    if [ -z "$*" ] ; then
+        echo 'You need to provide tag version and optional description.'
+        echo 'E.g., `oosTag mfe-v1.2.3 "optional description"`.'
+        return
+    fi
+
+    if [ -z "$2" ] ; then
+        git tag -a "$1" -m "$1"
+    else
+        git tag -a "$1" -m "$2"
+    fi
+
+    git push origin "$1"
+}
+
+function setMasterToLatestOriginMaster() {
+    git checkout -b tempBranch
+    git fetch -q
+    git br master origin/master -f
+    git checkout master
+    git br -D tempBranch
 }
 
 # set PATH to include rust cargo
