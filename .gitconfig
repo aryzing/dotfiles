@@ -5,11 +5,12 @@
   name = Eduard Bardají Puig
   email = ebardaji@gmail.com
 [core]
-  editor = vim
-  autocrlf = input
+  editor = "code --wait"
+	autocrlf = false
   safecrlf = true
   excludesfile = ~/.gitignore_global
 [alias]
+  aa = add -A
   st = status
   co = checkout
   br = branch
@@ -17,6 +18,7 @@
   ci = commit
   cim = commit -m
   ciam = commit -a -m
+  ciann = commit --amend --no-edit --no-verify
   hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
   type = cat-file -t
   dump = cat-file -p
@@ -31,7 +33,11 @@
   cob = checkout -b
   unstage = reset HEAD --
   p = push
+  pfwl = push --force-with-lease
   pfo = pull --ff-only
   puo = push -u origin
 [color]
   ui = true
+
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/

@@ -167,6 +167,15 @@ function gacp() {
     git push
 }
 
+function lastTenTags() {
+    if [[ $# -eq 0 ]] ; then
+        echo 'You need to provide search text.'
+        echo 'E.g., lastTenTagsOf root'
+        exit 0
+    fi
+    git tag -l "**$1**" --sort=-version:refname | head -n 10
+}
+
 function deleteAllBranchesExceptMaster() {
     git checkout master
     git branch | grep -v '^*' | xargs git branch -d 
